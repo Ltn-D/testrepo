@@ -1,0 +1,40 @@
+package Old_Javarush.Core.Level1;
+
+import java.util.Arrays;
+import java.util.stream.Stream;
+
+public class Lecture11_last {
+    static void main(String[] args) {
+        int[] data = new int[]{1, 2, 3, 5, -2, -8, 0, 77, 5, 5};
+        Pair result = getMinimumMaximumPair(data);
+
+        System.out.println("The minimum is " + result.x);
+        System.out.println("The maximum is " + result.y);
+    }
+
+    public static Pair getMinimumMaximumPair(int[] inputArray) {
+        if (inputArray == null || inputArray.length == 0) {
+            return new Pair(null, null);
+        } else {
+            Integer x = Arrays.stream(inputArray)
+                    .min()//для int не нужно переопределять компаратор
+                    .getAsInt();
+            Integer y = Arrays.stream(inputArray)
+                    .max()
+                    .getAsInt();
+
+            return new Pair(x, y);
+        }
+
+    }
+
+    public static class Pair {
+        public Integer x;
+        public Integer y;
+
+        public Pair(Integer x, Integer y) {
+            this.x = x;
+            this.y = y;
+        }
+    }
+}

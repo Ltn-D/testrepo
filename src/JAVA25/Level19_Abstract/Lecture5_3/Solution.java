@@ -1,0 +1,17 @@
+package JAVA25.Level19_Abstract.Lecture5_3;
+
+public class Solution {
+    public static void main(String[] args) {
+        // Создаем реализацию репозитория (хранилище в памяти)
+        TaskRepository repository = new InMemoryTaskRepository(); // Можно легко заменить на другую реализацию
+
+        // Внедряем репозиторий в сервис (через конструктор)
+        TaskService service = new TaskService(repository);
+
+        // Внедряем сервис в пользовательский интерфейс (через конструктор)
+        UserInterface ui = new UserInterface(service);
+
+        // Демонстрация работы: добавляем и тут же помечаем задачу выполненной
+        ui.addAndCompleteTask("Выучить внедрение зависимостей через конструктор");
+    }
+}
