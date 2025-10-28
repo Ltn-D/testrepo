@@ -6,12 +6,7 @@ interface Pressable {
 
 public class Lecture2_2 {
     public static void main(String[] args) {
-        Pressable pressable = new Pressable() {
-            @Override
-            public void activateEngine() {
-                System.out.println("Двигатели запущены! Мы летим к звёздам!");
-            }
-        };
+        Pressable pressable = () -> System.out.println("Двигатели запущены! Мы летим к звёздам!");
         pressable.activateEngine();
     }
 }

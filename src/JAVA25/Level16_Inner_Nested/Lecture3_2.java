@@ -8,12 +8,7 @@ public class Lecture3_2 {
 
 
     static void main(String[] args) {
-        Communicator newCommunicator = new Communicator() {
-            @Override
-            public void gret() {
-                System.out.println("Привет, мир!");
-            }
-        };
-        newCommunicator.gret();
+        Communicator newCommunicator =  () -> System.out.println("Привет, мир!");
+               newCommunicator.gret();
     }
 }
