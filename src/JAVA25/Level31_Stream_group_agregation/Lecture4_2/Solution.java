@@ -1,0 +1,56 @@
+package JAVA25.Level31_Stream_group_agregation.Lecture4_2;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+public class Solution {
+    public static void main(String[] args) {
+        // Формируем список студентов с разными курсами, специальностями и средними баллами
+        List<Student> students = Arrays.asList(
+                new Student("Алексей Смирнов", 1, "Информатика", 4.5),
+                new Student("Мария Иванова",   1, "Математика",   3.9),
+                new Student("Павел Павлов",    1, "Физика",       4.3),
+                new Student("Иван Петров",     2, "Информатика",  4.2),
+                new Student("Ольга Кузнецова", 2, "Физика",       4.8),
+                new Student("Олег Кузнецов", 2, "Физика",       4.8),
+                new Student("Юлия Фёдорова",   2, "Математика",   4.6),
+                new Student("Степан Егоров",   2, "Математика",   3.7),
+                new Student("Сергей Соколов",  3, "Математика",   4.1),
+                new Student("Анна Алексеева",  3, "Информатика",  5.0),
+                new Student("Никита Романов",  3, "Физика",       4.9),
+                new Student("Дмитрий Орлов",   4, "Физика",       3.7),
+                new Student("Екатерина Ник.",  4, "Информатика",  4.0), // граничное значение, не отличник
+                new Student("Егор Лебедев",    4, "Математика",   3.5)
+        );
+
+        // Вложенная группировка:
+        Map<Integer, Map<String, Long>> bestStudensCount = students.stream()
+                // 1) Сначала по cкурсу (studyCourse),
+                .collect(Collectors.groupingBy(
+                                Student::getStudyCourse,
+                                Collectors.groupingBy(
+                                        Student::getStudentSpecialty,
+                                        Collectors.summingLong(s -> s.getAverageGrade() > 4 ? 1 : 0))
+                        )
+                );
+        // 2) затем внутри курса — по специальности (studentSpecialty),
+        // 3) в качестве счётчика используем суммирование 1/0 в зависимости от условия "averageGrade > 4.0".
+        // Такой приём (summingLong с тернарным оператором) прост и работает в Java 8+,
+        // при этом в карте остаются и подгруппы с нулём отличников.
+
+
+        // Красиво выводим отчёт: для каждого курса и каждой специальности — количество отличников
+        for (var courses : bestStudensCount.entrySet()) {
+            int course = courses.getKey();
+            Map<String, Long>  specialties = courses.getValue();
+            System.out.println("Курс: "+ course);
+            for (var specialty : specialties.entrySet()) {
+                String spec = specialty.getKey();
+                long bestStudens = specialty.getValue();
+                System.out.println("Специальность: " + spec + ", количество отличников: " + bestStudens);
+            }
+        }
+    }
+}
