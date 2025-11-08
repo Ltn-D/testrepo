@@ -3,7 +3,7 @@ package JAVA25.Level31_Stream_group_agregation;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Level5_2 {
+public class Leсture5_2 {
     static class Result {
         // Полная сумма всех элементов
         public final int totalSum;
