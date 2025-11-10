@@ -9,7 +9,7 @@ public class Lecture4_2 {
         }
     }
 
-    static class Consoleprinter implements Printer {
+    static class ConsolePrinter implements Printer {
         @Override
         public void print(String text) {
             System.out.println(text);
@@ -17,7 +17,7 @@ public class Lecture4_2 {
     }
 
     static void main(String[] args) {
-        Printer printer = new Consoleprinter();
+        Printer printer = new ConsolePrinter();
         Printer.printHello(printer);
     }
 
