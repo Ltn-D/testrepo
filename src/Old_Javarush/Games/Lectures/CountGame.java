@@ -1,0 +1,45 @@
+package Old_Javarush.Games.Lectures;
+
+import com.javarush.engine.cell.Game;
+import com.javarush.engine.cell.Color;
+
+
+public class CountGame extends Game {
+    @Override
+    public void initialize() {
+        setScreenSize(10, 10);
+        showGrid(false);
+        for (int j = 0; j < 50; j++) {
+            int x = getRandomNumber(10);
+            int y = getRandomNumber(10);
+            setCellColor(x, y, Color.GREEN);
+            setCellNumber(x, y, getRandomNumber(100));
+        }
+        showResult();
+    }
+
+    public void showResult() {
+        int sum = 0;
+        int count = 0;
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                if (getCellColor(i, j) == Color.GREEN) {
+                    count += 1;
+                    sum += Integer.parseInt(getCellValue(i, j));
+                }
+            }
+        }
+        printSum(sum);
+        printCountOfGreenCells(count);
+        //напишите тут ваш код
+    }
+
+    private void printSum(int sum) {
+        System.out.println("Сумма всех чисел = " + sum);
+    }
+
+    private void printCountOfGreenCells(int count) {
+        System.out.println("Количество зеленых клеток = " + count);
+    }
+
+}

@@ -13,6 +13,6 @@ public class Lecture2_1 {
     }
 
     public static void print(ArrayList<Integer> numbers) {
-        numbers.forEach((i) -> System.out.println(i));
+        numbers.forEach(System.out::println);
     }
 }

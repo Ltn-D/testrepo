@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="game-engine">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/javarush/2787435/javarush-project/lib/game-engine.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
